@@ -1,5 +1,5 @@
 //Processes a list of URLS using child processes and creates a report file
-//furman-report.csv containing the axe-report results for each url.
+//report.csv containing the axe-report results for each url.
 //Each URL is processed
 //in a separate child process that is run synchronously with the 
 //spawnSync functionality.  Control is not returned to this main script
