@@ -5,44 +5,35 @@
 //spawnSync functionality.  Control is not returned to this main script
 //until the webpage has been analyzed and the report lines have been
 //generated as output from the child process.
-//Usage:  node psg-multiple-url
+//Usage:  node FA11y.js
 
 const {spawnSync} = require ('child_process');
 var fs = require ('fs');
 var headers='headers'
-var readline = require('readline');
 var filename = process.argv[2];
+let jsonData = require('./fa11y_config.json'); //Reads the JSON file of the configurations and assigns the file to the variable'jsonData'.
 
+var input_URL_fp = jsonData["input_URL_fp"]; //Assigns the list of URLs to a variable.
+var input_del = jsonData["input_del"]; //Assigns the chosen delimiter to a variable
+var output_fp = jsonData["output_fp"]; //Assigns the name of the output file to a variable.
+var WCAG_guidelist = jsonData["WCAG_guidelist"]; //Assigns the guidelines to be tested on to a variable.
 
-fs.writeFile('furman-report.csv','', (err)=> {   //Create csv file
+fs.writeFile(output_fp,'', (err)=> {   //Create csv file
   if(err) {
     console.log('error writing');
   }
 });
 
-// var urls = []; //creates list
+var array = fs.readFileSync(input_URL_fp).toString().split(input_del); //Creates array of urls from the input file of urls.
 
-// fs.readFileSync('list-of-urls.txt', function(err, data) { //reads file list-of-urls.txt
-//     if(err) throw err;
-//     urls.push(data.toString().split("\r\n")); //takes items from the text file and puts them into the list.
-//     console.log(urls);
-// });
-
-//for (var url of [urls][0]) {  //I think my problem lies somewhere within this for loop.
-readline.createInterface({
-    input: fs.createReadStream('list-of-urls.txt'),
-    terminal: false
-}).on('line', function(url) {  
-  //console.log("processing ",url,' with headers ',headers)  
-  console.log("processing URL:", url)
-  //console.log(array[i])
+for (const url of array) {  
+  console.log("Processing URL:", url)
   page=spawnSync('node',['psg-child-process',url,headers])  //Spawns child process to process url
-    //console.log('stdout:', stdout);
   headers = ''      //Don't print headers after the first url is processed
-  fs.appendFile('furman-report.csv',page.stdout, (err)=> {  //stdout will contain axe-report lines
+  fs.appendFile(output_fp,page.stdout, (err)=> {  //stdout will contain axe-report lines
      if(err) {
        console.log('error writing');
       }
     });
 
- });
+ };
