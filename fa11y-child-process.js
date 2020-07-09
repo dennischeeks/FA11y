@@ -1,10 +1,9 @@
 //Analyzes one site using headless-chrome and creates the report
 //by creating the headers separately from the rest of the report
 //
-//Usage Create child process from psg-multilpe-url.js
+//Usage Create child process from fa11y.js
 //Works!!
 
-//var url="https://www.furman.edu";  //For testing only
 //var headers ='headers'
 
 var url=process.argv[2];
