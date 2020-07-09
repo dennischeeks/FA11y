@@ -1,4 +1,1 @@
-https://www.furman.edu/furman-focused/
-https://www.furman.edu/enrollment-services/
-https://libguides.furman.edu/library/home
-https://riley.furman.edu/
+https://www.furman.edu/,https://www.furman.edu/campus-life/trone-student-center/,https://www.furman.edu/academics/majors-minors-programs/,https://www.furman.edu/furman-focused/,https://riley.furman.edu/,https://libguides.furman.edu/library/personnel,https://blogs.furman.edu/
