@@ -24,9 +24,9 @@ fs.writeFile(output_fp,'', (err)=> {   //Create csv file
   }
 });
 
-var array = fs.readFileSync(input_URL_fp).toString().split(input_del); //Creates array of urls from the input file of urls.
+var url_array = fs.readFileSync(input_URL_fp).toString().split(input_del); //Creates array of urls from the input file of urls.
 
-for (const url of array) {  
+for (const url of url_array) {  
   console.log("Processing URL:", url)
   page=spawnSync('node',['psg-child-process',url,headers])  //Spawns child process to process url
   headers = ''      //Don't print headers after the first url is processed
