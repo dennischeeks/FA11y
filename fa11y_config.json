@@ -1,0 +1,6 @@
+{
+	"input_URL_fp": "list-of-urls.txt",
+	"input_del": ",",
+	"output_fp": "report.csv",
+	"WCAG_guidelist": "wcag2a, wcag2aa"
+}
