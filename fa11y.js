@@ -1,16 +1,24 @@
 //Processes a list of URLS using child processes and creates a report file
-//report.csv containing the axe-report results for each url.
+//containing the axe-report results for each url.
+//Accepts a json file of the following configurations:
+    //Parameter     |   Description
+    //input_URL_fp  |   Path of file which contains list of URLs to be 
+    //              |   analyzed, separated by input_delimiter.
+    //input_del     |   Character separating URLs in input_URL_file
+    //output_fp     |   Path of csv file containing report output.
+    //              |   Contains 1 header line for column headers and
+    //              |   detail lines for each URL in input_URL_file.
+    //WCAG_guidelist|   List of WCAG guidelinesto be used in analysis.
 //Each URL is processed
 //in a separate child process that is run synchronously with the 
-//spawnSync functionality.  Control is not returned to this main script
+//spawnSync functionality. Control is not returned to this main script
 //until the webpage has been analyzed and the report lines have been
 //generated as output from the child process.
-//Usage:  node FA11y.js
+//Usage:  node fa11y.js
 
 const {spawnSync} = require ('child_process');
 var fs = require ('fs');
 var headers='headers'
-var filename = process.argv[2];
 let jsonData = require('./fa11y_config.json'); //Reads the JSON file of the configurations and assigns the file to the variable'jsonData'.
 
 var input_URL_fp = jsonData["input_URL_fp"]; //Assigns the list of URLs to a variable.
@@ -28,7 +36,7 @@ var url_array = fs.readFileSync(input_URL_fp).toString().split(input_del); //Cre
 
 for (const url of url_array) {  
   console.log("Processing URL:", url)
-  page=spawnSync('node',['psg-child-process',url,headers])  //Spawns child process to process url
+  page=spawnSync('node',['fa11y-child-process',url,headers])  //Spawns child process to process url
   headers = ''      //Don't print headers after the first url is processed
   fs.appendFile(output_fp,page.stdout, (err)=> {  //stdout will contain axe-report lines
      if(err) {
