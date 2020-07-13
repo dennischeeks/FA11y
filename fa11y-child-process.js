@@ -1,9 +1,10 @@
 //Analyzes one site using headless-chrome and creates the report
 //by creating the headers separately from the rest of the report
 //
-//Usage Create child process from fa11y.js
+//Usage: Create child process from fa11y.js
 //Works!!
 
+//var url="https://www.furman.edu";  //For testing only
 //var headers ='headers'
 
 var url=process.argv[2];
@@ -41,9 +42,8 @@ driver.wait(until.urlContains('furman'))  //Wait until page opens
         AXE_BUILDER.analyze(function (err,results) {    //Analyze page
             if (err) { console.log('error analyzing')
             } 
-            console.log(url);
+           // console.log(url);
             AxeReports.createCsvReportRow(results);  //Create results for page
         });
     });
 //driver.quit();
-
