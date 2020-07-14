@@ -44,6 +44,6 @@ driver.wait(until.urlContains('furman'))  //Wait until page opens
             } 
            // console.log(url);
             AxeReports.createCsvReportRow(results);  //Create results for page
+            driver.quit()
         });
     });
-//driver.quit();
