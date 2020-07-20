@@ -8,7 +8,7 @@
     //output_fp     |   Path of csv file containing report output.
     //              |   Contains 1 header line for column headers and
     //              |   detail lines for each URL in input_URL_file.
-    //WCAG_guidelist|   List of WCAG guidelinesto be used in analysis.
+    //WCAG_guidelist|   List of WCAG guidelines to be used in analysis.
 //Each URL is processed
 //in a separate child process that is run synchronously with the 
 //spawnSync functionality. Control is not returned to this main script
