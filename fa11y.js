@@ -19,7 +19,7 @@
 const {spawnSync} = require ('child_process');
 var fs = require ('fs');
 var headers='headers'
-let jsonData = require('./fa11y_config.json'); //Reads the JSON file of the configurations and assigns the file to the variable'jsonData'.
+let jsonData = require('./fa11y-config.json'); //Reads the JSON file of the configurations and assigns the file to the variable'jsonData'.
 
 var input_URL_fp = jsonData["input_URL_fp"]; //Assigns the list of URLs to a variable.
 var input_del = jsonData["input_del"]; //Assigns the chosen delimiter to a variable
