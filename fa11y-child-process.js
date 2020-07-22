@@ -42,7 +42,7 @@ driver.wait(until.urlContains('furman'))  //Wait until page opens
         AXE_BUILDER.analyze(function (err,results) {    //Analyze page
             if (err) { console.log('error analyzing')
             } 
-           // console.log(url);
+            console.log(url);
             AxeReports.createCsvReportRow(results);  //Create results for page
             driver.quit()
         });
