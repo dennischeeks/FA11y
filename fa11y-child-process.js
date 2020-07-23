@@ -43,7 +43,12 @@ driver.wait(until.urlContains('furman'))  //Wait until page opens
             if (err) { console.log('error analyzing')
             } 
             console.log(url);
-            AxeReports.createCsvReportRow(results);  //Create results for page
+            if (results["url"] === "chrome-error://chromewebdata/"){
+                console.log(url, ",Browser Error: The URL could not be opened.");
+            } else {
+                AxeReports.createCsvReportRow(results);  //Create results for page
+            }
+            
             driver.quit()
         });
     });
